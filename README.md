@@ -34,6 +34,8 @@ python tools/train.py -expn BCD_nano -n nano_all -f exps/example/yolox_voc/yolox
 python tools/train.py -expn s_all -n yolox-s -f exps/example/yolox_voc/yolox_voc_s.py -d 0 -b 64 --fp16 -c ./weights/yolox_s.pth --logger tensorboard
 python tools/train.py -expn x_all -n yolox-x -f exps/example/yolox_voc/yolox_voc_x.py -d 0 -b 64 --fp16 -c ./weights/yolox_x.pth --logger tensorboard
 ```
+We have open-sourced the model weight. The link is as follows:
+https://www.kaggle.com/datasets/kevin1742064161/yolox-bcd
 
 step 5. Infer on external datasets.
 ```shell
@@ -42,8 +44,6 @@ python tools/demo.py image -f exps/example/yolox_voc/yolox_voc_x.py -c YOLOX_out
 python tools/demo.py image -f exps/example/yolox_voc/yolox_voc_x.py -c YOLOX_outputs/x_all/best_ckpt.pth --path G:/DATA/CBIS-DDSM/CBIS-DDSM_yolo --conf 0.1 --nms 0.45 --tsize 640 --save_result --device gpu -expn CBIS-DDSM
 python tools/demo.py image -f exps/example/yolox_voc/yolox_voc_x.py -c YOLOX_outputs/x_all/best_ckpt.pth --path G:/DATA/MINI_DDSM/images --conf 0.1 --nms 0.45 --tsize 640 --save_result --device gpu -expn MINI_DDSM
 ```
-We have open-sourced the model weight. The link is as follows:
-https://www.kaggle.com/datasets/kevin1742064161/yolox-bcd
 
 step 6. Rerun ./BCD/preprocessed/external/*_dcm2png.ipynb and incorporate YOLOX prediction results in order to crop ROI.
 
