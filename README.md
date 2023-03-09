@@ -42,6 +42,9 @@ python tools/demo.py image -f exps/example/yolox_voc/yolox_voc_x.py -c YOLOX_out
 python tools/demo.py image -f exps/example/yolox_voc/yolox_voc_x.py -c YOLOX_outputs/x_all/best_ckpt.pth --path G:/DATA/CBIS-DDSM/CBIS-DDSM_yolo --conf 0.1 --nms 0.45 --tsize 640 --save_result --device gpu -expn CBIS-DDSM
 python tools/demo.py image -f exps/example/yolox_voc/yolox_voc_x.py -c YOLOX_outputs/x_all/best_ckpt.pth --path G:/DATA/MINI_DDSM/images --conf 0.1 --nms 0.45 --tsize 640 --save_result --device gpu -expn MINI_DDSM
 ```
+We have open-sourced the model weight. The link is as follows:
+https://www.kaggle.com/datasets/kevin1742064161/yolox-bcd
+
 step 6. Rerun ./BCD/preprocessed/external/*_dcm2png.ipynb and incorporate YOLOX prediction results in order to crop ROI.
 
 step 7. We have also open-sourced the official datasets and external datasets after ROI crop. The final results can be downloaded directly. The links are as follows: 
@@ -74,3 +77,8 @@ CUDA_VISIBLE_DEVICES=0,1 PYTHONPATH=. python src/train_v1213.py --in_base_dir /h
 
 ## CNN+LSTM Model
 Run ./BCD/rsna_lstm_models/*.ipynb
+
+## Final Submission
+* https://www.kaggle.com/code/forcewithme/0226-yoloxnano-yoloxs-mean2
+* https://www.kaggle.com/code/forcewithme/final-lstm2
+
