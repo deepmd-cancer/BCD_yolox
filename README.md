@@ -1,31 +1,27 @@
-## External Data
-* Download CBIS-DDSM from here: https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=22516629
-* Download CMMD from here: https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=70230508
-* Download VinDr-Mammo from here: https://physionet.org/content/vindr-mammo/1.0.0
-* Download Mini-DDSM from here: https://www.kaggle.com/datasets/cheddad/miniddsm2
-* Run ./BCD/preprocessed/external/preprocessed_*.py to obtain the CSV of external datasets.
-* Run ./BCD/preprocessed/external/*_dcm2png.ipynb to convert datasets from DCM to PNG format. Please note that the mini-DDSM dataset is already in PNG format, so there is no need to run the ipynb.
-* We have also open-sourced the preprocessed datasets. The final results can be downloaded directly. The link is as follows:
-https://www.kaggle.com/datasets/kevin1742064161/bcd-dataset
 
-## YOLOX Training & Infer
-* We have open-sourced the training code of yolox. The link is as follows: https://www.kaggle.com/datasets/kevin1742064161/yolo-x
-* Download the link at the end of the last section and place it in the './YOLOX/datasets' directory of the yolox project.
 
-step 1. Install YOLOX from source.
+## lightning Training
+
+step 1. Install PyTorch2.0.
 ```shell
-cd YOLOX
-pip3 install -v -e .  # or  python3 setup.py develop
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
-step 2. Training BCD_1k.
+step 2. Install PyTorch_lightning
 ```shell
-python tools/train.py -expn m_1k -n yolox-m -f exps/example/yolox_voc/yolox_voc_m.py -d 0 -b 32 --fp16 -c ./weights/yolox_m.pth --logger tensorboard
+pip install https://github.com/Lightning-AI/lightning/archive/refs/heads/master.zip -U
+```
+step 3. Install my own timm.
+```shell
+cd ./packages/pytorch-image-models
+pip install -v -e .
 ```
 
-step 3. Infer on official datasets.
+step 4. Install others.
 ```shell
-python tools/demo.py image -f exps/example/yolox_voc/yolox_voc_m.py -c YOLOX_outputs/m_1k/best_ckpt.pth --path I:/DATA/BCD_VOC/JPEGImages --conf 0.1 --nms 0.45 --tsize 640 --save_result --device gpu -expn BCD
+pip install sentence_transformers
+pip install albumentations
+pip install pandas
 ```
 
 step 4. Use the detection boxes obtained in step 3 for pseudo-label training.
